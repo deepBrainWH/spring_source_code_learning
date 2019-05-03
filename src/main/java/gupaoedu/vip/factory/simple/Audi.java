@@ -1,4 +1,4 @@
-package gupaoedu.vip.factory;
+package gupaoedu.vip.factory.simple;
 
 public class Audi implements Vehicle	{
 

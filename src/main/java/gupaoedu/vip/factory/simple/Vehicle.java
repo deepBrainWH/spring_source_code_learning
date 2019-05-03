@@ -1,4 +1,4 @@
-package gupaoedu.vip.factory;
+package gupaoedu.vip.factory.simple;
 
 public interface Vehicle {
 	
