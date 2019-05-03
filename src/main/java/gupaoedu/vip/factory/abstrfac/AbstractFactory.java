@@ -5,6 +5,7 @@ import gupaoedu.vip.factory.simple.Vehicle;
 public abstract class AbstractFactory {
 	protected abstract Vehicle getCar();
 	
+	//这段代码就是动态配置。
 	public Vehicle getCar(String name) {
 		if("BENZI".toLowerCase().equals(name.toLowerCase())) {
 			return new BenzFactory().getCar();
