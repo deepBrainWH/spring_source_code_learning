@@ -2,14 +2,17 @@ package gupaoedu.vip.proxy.dynamicproxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 public class UserServiceDynamicProxy implements InvocationHandler{
 
 	private UserService service;
 	
-	public UserServiceDynamicProxy(UserService service) {
+	public Object getInstance(UserService service) {
 		// TODO Auto-generated constructor stub
 		this.service = service;
+		return Proxy.newProxyInstance(this.service.getClass().getClassLoader(),
+				this.service.getClass().getInterfaces(), this);
 	}
 	
 	@Override
