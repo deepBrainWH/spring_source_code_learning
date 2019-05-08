@@ -18,9 +18,9 @@ public class UserServiceDynamicProxy implements InvocationHandler{
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		// TODO Auto-generated method stub
-		System.out.println("Dynamic proxy start!");
-		Object invoke = method.invoke(service, args);
 		System.out.println("dynamic proxy end!");
+		Object invoke = method.invoke(service, args);
+		System.out.println("Dynamic proxy start!");
 		return invoke;
 	}
 
