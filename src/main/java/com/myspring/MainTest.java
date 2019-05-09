@@ -8,6 +8,7 @@ public class MainTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         UserService userService = (UserService)context.getBean("userServiceImp");
 //        userService.add();
-        userService.anno_transactionAdd();
+//        userService.anno_transactionAdd();
+        userService.update();
     }
 }

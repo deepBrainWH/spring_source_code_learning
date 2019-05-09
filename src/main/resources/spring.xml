@@ -3,14 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.alibaba.com/schema/stat"
+       xmlns:mvc="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.alibaba.com/schema/stat http://www.alibaba.com/schema/stat.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     <context:component-scan base-package="com.myspring.*"/>
-    <aop:aspectj-autoproxy/> <!-- 开启事物注解 -->
+    <aop:aspectj-autoproxy/> <!-- 开启事务注解 -->
 
 <!--    data source, druid-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -28,5 +29,7 @@
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+<!--    开启注解驱动-->
+    <mvc:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
 </beans>

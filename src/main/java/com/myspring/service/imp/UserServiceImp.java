@@ -6,6 +6,7 @@ import com.myspring.tansaction.TransactionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("userServiceImp")
 public class UserServiceImp implements UserService {
@@ -41,7 +42,19 @@ public class UserServiceImp implements UserService {
     public void anno_transactionAdd() {
         userDao.add("hello", "world");
         System.out.println("-=============================");
-        int a = 1/0;
         userDao.add("world", "hello");
+    }
+
+    @Transactional
+    public void addRecord(){
+
+    }
+
+    @Override
+    @Transactional //声明式事务， @Transactional或者XML配置
+    public void update() {
+        userDao.add("11111", "11111");
+//        int a = 1/0;
+        userDao.add("2222", "2222");
     }
 }
