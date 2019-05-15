@@ -57,12 +57,12 @@ public class MyClassPathXmlContext {
         return forName.newInstance();
     }
 
-    //解析XML文件
+    //Resolving XML property file.
     private List<Element> readXML() throws DocumentException {
-        //1.读取xml文件
+        //1.Reading xml file.
         SAXReader saxReader = new SAXReader();
         Document document = saxReader.read(getReaourceInputStream(xmlPath));
-        //2. 读取根节点
+        //2. Getting root node.
         Element rootElement = document.getRootElement();
         List<Element> elements = rootElement.elements();
         return elements;
