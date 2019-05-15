@@ -1,4 +1,4 @@
-### Spring-framework source code analyze
+### 手写spring框架
 * Dynamic proxy
-	* (cglib)[./src/main/java/gupaoedu/bip/proxy/cglib]
+	* [cglib](./src/main/java/gupaoedu/bip/proxy/cglib)
 
