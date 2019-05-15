@@ -1,4 +1,3 @@
 ### 手写spring框架
-* Dynamic proxy
-	* [cglib](./src/main/java/gupaoedu/bip/proxy/cglib)
+* [每特学院课程学习](./src/main/java/com/meite/README.md)
 
