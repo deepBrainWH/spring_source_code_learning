@@ -9,4 +9,6 @@ public interface UserService {
     void anno_transactionAdd();
 
     void update();
+
+    void update1();
 }

@@ -1,6 +1,5 @@
 package com.myspring.tansaction;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
@@ -18,16 +17,20 @@ public class TransactionUtils {
         this.transactionManager = transactionManager;
     }
 
-    public TransactionStatus begin(){
-        return transactionManager.getTransaction(new DefaultTransactionAttribute());
+    private TransactionStatus status = null;
+
+    public TransactionStatus begin() {
+        status = transactionManager.getTransaction(new DefaultTransactionAttribute());
+        return status;
     }
 
-    public void commit(TransactionStatus status){
+    public void commit(TransactionStatus status) {
         transactionManager.commit(status);
     }
 
-    public void rollback(TransactionStatus status){
-        transactionManager.rollback(status);
+    public void rollback() {
+        if (this.status != null)
+            transactionManager.rollback(status);
     }
 
 }

@@ -30,6 +30,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 <!--    开启注解驱动-->
-    <mvc:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+<!--    <mvc:annotation-driven transaction-manager="dataSourceTransactionManager"/>-->
 
 </beans>

@@ -3,7 +3,6 @@ package com.myspring.service.imp;
 import com.myspring.dao.UserDao;
 import com.myspring.service.UserService;
 import com.myspring.tansaction.TransactionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +33,7 @@ public class UserServiceImp implements UserService {
         } catch (Exception e) {
             e.getMessage();
             if (status != null)
-                transactionUtils.rollback(status);
+                transactionUtils.rollback();
         }
     }
 
@@ -56,5 +55,13 @@ public class UserServiceImp implements UserService {
         userDao.add("11111", "11111");
 //        int a = 1/0;
         userDao.add("2222", "2222");
+    }
+
+    @Override
+//    @ExtTransaction
+    public void update1() {
+        userDao.add("33333", "33333");
+//        int a = 1/0;
+        userDao.add("44444", "44444");
     }
 }
