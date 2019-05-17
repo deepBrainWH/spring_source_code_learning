@@ -12,12 +12,16 @@ plugins {
     id 'idea'
 }
 
+sourceCompatibility = 1.8
+
 idea{
     module{
         downloadSources true
         downloadJavadoc false
     }
 }
+
+
 
 repositories {
     // Use jcenter for resolving your dependencies.

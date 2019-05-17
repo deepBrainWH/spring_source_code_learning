@@ -1,18 +1,22 @@
 package com.meite.myservice.annotation;
 
-import com.meite.myservice.annotation.context.MyClassPathAnnotationContext;
+import com.meite.myservice.annotation.app.MySpringBootApplication;
+import com.meite.myservice.annotation.service.imp.AnnoServiceImp;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 public class RunApp {
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
-        //1. 扫描包
-        MyClassPathAnnotationContext context = new MyClassPathAnnotationContext("com.meite.myservice.annotation.service");
-        ArrayList<String> classNamesFromPackage = context.getClassNamesFromPackage();
-        System.out.println("hello world");
+    public static void main(String[] args) throws ClassNotFoundException,
+            IllegalAccessException, InstantiationException {
+        MySpringBootApplication.run(RunApp.class);
+        AnnoServiceImp annoServiceImp = (AnnoServiceImp)new MySpringBootApplication().getBean("service");
+//        TestServiceAnno testServiceAnno = (TestServiceAnno)new MySpringBootApplication().getBean("testServiceAnno");
+        annoServiceImp.callAutowriteObject();
+    }
+
+    private void myAnnotationService() throws IOException, URISyntaxException {
         //2. 判断是否有注入Bean的注解
 
         //3. 使用Java反射机制进行初始化
