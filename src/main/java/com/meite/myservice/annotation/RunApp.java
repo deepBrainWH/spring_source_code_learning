@@ -10,7 +10,7 @@ public class RunApp {
 
     public static void main(String[] args) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
-        MySpringBootApplication.run(RunApp.class);
+        MySpringBootApplication.run(RunApp.class, "com.meite.myservice.annotation");
         AnnoServiceImp annoServiceImp = (AnnoServiceImp)new MySpringBootApplication().getBean("service");
 //        TestServiceAnno testServiceAnno = (TestServiceAnno)new MySpringBootApplication().getBean("testServiceAnno");
         annoServiceImp.callAutowriteObject();

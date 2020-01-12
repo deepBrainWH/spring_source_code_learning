@@ -47,6 +47,11 @@ public class MySpringBootApplication {
         }
     }
 
+    public static void run(Class<?> clazz, String packageName) throws MySpringBootException {
+        context = new MySpringBootApplication(packageName);
+        run(clazz);
+    }
+
     private static void scanPackage(String packageName){
         String replace = packageName.replace(".", "/");
         File file = new File(classLoaderPath + replace);
