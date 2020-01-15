@@ -9,7 +9,7 @@ import org.springsource.course1.cap2.controller.OrderController;
 /**
  * Date: 1/10/20
  * Author: wangheng
- * Description:
+ * Description:spring 配置文件, 扫描注解
  **/
 @Configuration
 @ComponentScan(value = "org.springsource.course1.cap2", includeFilters = {
