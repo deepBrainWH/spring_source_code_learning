@@ -8,14 +8,19 @@ import org.springsource.course1.cap6.Pig;
  * Author: wangheng
  * Description:
  **/
-public class JamesFactory implements FactoryBean<Pig> {
+public class JamesFactoryBean implements FactoryBean<Pig> {
     @Override
     public Pig getObject() throws Exception {
-        return null;
+        return new Pig();
     }
 
     @Override
     public Class<?> getObjectType() {
-        return null;
+        return Pig.class;
+    }
+
+    @Override
+    public boolean isSingleton() {
+        return true;
     }
 }

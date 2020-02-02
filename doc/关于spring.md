@@ -28,7 +28,7 @@ IOC容器: 多实例->仅当bean被使用时才创建
 FactoryBean, BeanFactory区别?  
 --> FactoryBean是一种注册机制, 可以把我们java实例bean通过factoryBean注入到容器中.  
 --> BeanFactory: 从我们容器中获取到实例化后的bean.  
-### 手动添加组件到IOC容器
+### 手动添加组件到IOC容器(Spring注册Bean的多种注册方式)
 3. @Import: [快速给容器导入一个组件] 注意: @Bean有点简单粗暴.
    3.1 `@Import()`导入容器中的组件, 容器会自动注册这个组件, bean的id为全类名.
    3.2 ImportSelector: 是一个接口, 返回需要导入到容器的组件的全类名.
@@ -61,3 +61,5 @@ public class JamesImportBeanDefinitionRegistrar implements ImportBeanDefinitionR
 }
 ```
 5. 使用Spring提供的FactoryBean(工厂bean)进行注册
+
+## 第三节课 Bean的生命周期

@@ -9,6 +9,8 @@ import org.springsource.course1.cap2.config.MainConfig2;
 import org.springsource.course1.cap4.MainConfig;
 import org.springsource.course1.cap5.Cap5MainConfig;
 import org.springsource.course1.cap6.Cap6MainConfig;
+import org.springsource.course1.cap7.Cap7MainConfig;
+import org.springsource.course1.cap8.Cap8MainConfigOfLifeCycle;
 
 /**
  * Date: 1/12/20
@@ -58,10 +60,10 @@ public class MainTest3 {
      * 测试cap4. 条件注册bean
      */
     @Test
-    public void testCap4(){
+    public void testCap4() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);
         String[] names = context.getBeanDefinitionNames();
-        for(String name: names){
+        for (String name : names) {
             log.info(name);
         }
         log.info("IOC容器初始化完成!");
@@ -71,10 +73,10 @@ public class MainTest3 {
      * 测试cap5: 导入自定义类
      */
     @Test
-    public void testImport(){
+    public void testImport() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap5MainConfig.class);
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
-        for(String name: beanDefinitionNames){
+        for (String name : beanDefinitionNames) {
             log.info(name);
         }
         log.info("IOC容器初始化完毕");
@@ -84,11 +86,35 @@ public class MainTest3 {
      * 测试ImportBeanDefinitionRegistrar
      */
     @Test
-    public void testImportBeanDefinitionRegistrar(){
+    public void testImportBeanDefinitionRegistrar() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap6MainConfig.class);
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
-        for(String name: beanDefinitionNames){
+        for (String name : beanDefinitionNames) {
             log.info(name);
         }
+    }
+
+    /**
+     * Test FactoryBean
+     */
+    @Test
+    public void testFactoryBean() throws Exception {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap7MainConfig.class);
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+        for (String name : beanDefinitionNames) {
+            log.info(name);
+        }
+        Object bean1 = context.getBean("jamesFactory");
+        Object bean2 = context.getBean("&jamesFactory");
+        log.info("Bean类型:" + bean1.getClass());
+        log.info("Bean类型:" + bean2.getClass());
+    }
+
+    @Test
+    //测试Bean的生命周期
+    public void testTheLifecycleOfBean(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap8MainConfigOfLifeCycle.class);
+        Object bike = context.getBean("bike");
+        context.close();
     }
 }
