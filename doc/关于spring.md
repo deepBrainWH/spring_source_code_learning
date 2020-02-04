@@ -65,6 +65,13 @@ public class JamesImportBeanDefinitionRegistrar implements ImportBeanDefinitionR
 ### 初始化--销毁bean的三种方式
 1. `@Bean(initMethod= , destroyMethod= )`
 2. Bean类中实现 InitializingBean, DisposableBean接口
-3. JSR250规范: `@PostConstruct`, `@PreDestroy`注解
+3. JSR250规范: `@PostConstruct`, `@PreDestroy`注解  
+底层源码实现, 位置:org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory  
+![源码实现](./imgs/1.png)
 
+### 自定义bean后置处理器  
+代码位置:`org.springsource.course1.cap9.JamesBeanPostProcessor`  
+步骤:
+1. 创建并初始化容器相关的所有processor
+2. bean
 

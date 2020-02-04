@@ -1,12 +1,15 @@
-package org.springsource.course1.cap8.bean;
+package org.springsource.course1.cap9;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by wangheng at 2/4/20
  * Description: 如果不指定init, destroy方法时, 同样可以通过实现InitializingBean和DisposableBean接口来完成
  **/
+@Component
 public class Train implements InitializingBean, DisposableBean {
 
     public Train(){

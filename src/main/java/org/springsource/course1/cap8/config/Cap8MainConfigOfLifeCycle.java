@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springsource.course1.cap1.Person;
 import org.springsource.course1.cap8.bean.Bike;
-import org.springsource.course1.cap8.bean.Train;
+import org.springsource.course1.cap9.Train;
 
 /**
  * Date: 1/17/20

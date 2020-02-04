@@ -11,7 +11,8 @@ import org.springsource.course1.cap5.Cap5MainConfig;
 import org.springsource.course1.cap6.Cap6MainConfig;
 import org.springsource.course1.cap7.Cap7MainConfig;
 import org.springsource.course1.cap8.bean.Jeep;
-import org.springsource.course1.cap8.bean.Train;
+import org.springsource.course1.cap9.Cap9MainConfigOfLifeCycle;
+import org.springsource.course1.cap9.Train;
 import org.springsource.course1.cap8.config.Cap8MainConfigOfLifeCycle;
 
 /**
@@ -134,6 +135,12 @@ public class MainTest3 {
     public void testTheLifecycleOfBean3(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap8MainConfigOfLifeCycle.class);
         Jeep bean = context.getBean(Jeep.class);
+        context.close();
+    }
+
+    @Test
+    public void testBeanPostProcessor(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap9MainConfigOfLifeCycle.class);
         context.close();
     }
 }
