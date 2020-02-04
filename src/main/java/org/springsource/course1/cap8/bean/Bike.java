@@ -1,4 +1,4 @@
-package org.springsource.course1.cap8;
+package org.springsource.course1.cap8.bean;
 
 /**
  * Date: 1/17/20

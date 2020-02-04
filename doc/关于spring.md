@@ -55,11 +55,16 @@ public class JamesImportBeanDefinitionRegistrar implements ImportBeanDefinitionR
             //对于我们要注册的bean, 给bean进行封装.
             //在底层源码中, 要想往容器中注册bean, 都会使用RootBeanDefinition类进行注册.
             BeanDefinition beanDefinition = new RootBeanDefinition("pig", Pig.class);
-            registry.registerBeanDefinition("pig",);
+            registry.registerBeanDefinition("pig");
         }
     }
 }
 ```
 5. 使用Spring提供的FactoryBean(工厂bean)进行注册
-
 ## 第三节课 Bean的生命周期
+### 初始化--销毁bean的三种方式
+1. `@Bean(initMethod= , destroyMethod= )`
+2. Bean类中实现 InitializingBean, DisposableBean接口
+3. JSR250规范: `@PostConstruct`, `@PreDestroy`注解
+
+

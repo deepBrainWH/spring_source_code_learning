@@ -10,7 +10,9 @@ import org.springsource.course1.cap4.MainConfig;
 import org.springsource.course1.cap5.Cap5MainConfig;
 import org.springsource.course1.cap6.Cap6MainConfig;
 import org.springsource.course1.cap7.Cap7MainConfig;
-import org.springsource.course1.cap8.Cap8MainConfigOfLifeCycle;
+import org.springsource.course1.cap8.bean.Jeep;
+import org.springsource.course1.cap8.bean.Train;
+import org.springsource.course1.cap8.config.Cap8MainConfigOfLifeCycle;
 
 /**
  * Date: 1/12/20
@@ -115,6 +117,23 @@ public class MainTest3 {
     public void testTheLifecycleOfBean(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap8MainConfigOfLifeCycle.class);
         Object bike = context.getBean("bike");
+        context.close();
+    }
+
+    /**
+     * 测试bean的init, destroy方法, 通过实现接口来完成
+     */
+    @Test
+    public void testTheLifecycleOfBean2(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap8MainConfigOfLifeCycle.class);
+        Train bean = context.getBean(Train.class);
+        context.close();
+    }
+
+    @Test
+    public void testTheLifecycleOfBean3(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap8MainConfigOfLifeCycle.class);
+        Jeep bean = context.getBean(Jeep.class);
         context.close();
     }
 }

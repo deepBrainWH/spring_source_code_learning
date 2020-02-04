@@ -1,14 +1,18 @@
-package org.springsource.course1.cap8;
+package org.springsource.course1.cap8.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springsource.course1.cap1.Person;
+import org.springsource.course1.cap8.bean.Bike;
+import org.springsource.course1.cap8.bean.Train;
 
 /**
  * Date: 1/17/20
  * Author: wangheng
  * Description:bean的生命周期
  **/
+@ComponentScan({"org.springsource.course1.cap8"})
 @Configuration
 public class Cap8MainConfigOfLifeCycle {
 
@@ -25,5 +29,10 @@ public class Cap8MainConfigOfLifeCycle {
     @Bean(initMethod = "init", destroyMethod = "destroy")
     public Bike bike(){
         return new Bike();
+    }
+
+    @Bean
+    public Train train(){
+        return new Train();
     }
 }
