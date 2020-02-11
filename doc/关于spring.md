@@ -75,3 +75,10 @@ public class JamesImportBeanDefinitionRegistrar implements ImportBeanDefinitionR
 1. 创建并初始化容器相关的所有processor
 2. bean
 
+### 关于Spring Bean后置处理器`BeanPostProcessor`
+> 注意区分bean实现InitializingBean、DisposableBean接口和定义BeanPostProcessor的区别
+定义一个类实现BeanPostProcessor接口后, 实现两个方法， beforeInitializer和afterInitializer方法， 是针对所有bean初始化处理。
+
+其实对于`@Autowired`注解, 实际上是`AutowiredAnnotationBeanPostProcessor`类所完成的操作.  
+Autowired----->AutowiredAnnotationBeanPostProcessor  注册到IOC容器  
+bean----->控制我们的bean
