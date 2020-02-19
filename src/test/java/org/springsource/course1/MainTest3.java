@@ -2,10 +2,19 @@ package org.springsource.course1;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySource;
 import org.springsource.course1.cap1.Person;
+import org.springsource.course1.cap10.bean.Bird;
+import org.springsource.course1.cap10.config.Cap10Configuration;
+import org.springsource.course1.cap11.Cap11MainConfigure;
+import org.springsource.course1.cap11.MyController;
+import org.springsource.course1.cap11.MyService;
 import org.springsource.course1.cap2.config.MainConfig2;
 import org.springsource.course1.cap4.MainConfig;
 import org.springsource.course1.cap5.Cap5MainConfig;
@@ -15,6 +24,9 @@ import org.springsource.course1.cap8.bean.Jeep;
 import org.springsource.course1.cap9.Cap9MainConfigOfLifeCycle;
 import org.springsource.course1.cap9.Train;
 import org.springsource.course1.cap8.config.Cap8MainConfigOfLifeCycle;
+
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * Date: 1/12/20
@@ -143,5 +155,31 @@ public class MainTest3 {
     public void testBeanPostProcessor(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap9MainConfigOfLifeCycle.class);
         context.close();
+    }
+
+    @Test
+    public void testCap10(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap10Configuration.class);
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+        for(String name: beanDefinitionNames){
+            System.out.println("Beans: "+name);
+        }
+        //Printing all environment variables
+        ConfigurableEnvironment environment = context.getEnvironment();
+
+        System.out.println("Environment: == "+environment.getProperty("bird.color"));
+        Bird bean = context.getBean(Bird.class);
+        System.out.println(bean.toString());
+    }
+
+    @Test
+    public void testCap11(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap11MainConfigure.class);
+        MyController bean = context.getBean(MyController.class);
+        MyService service = bean.getService();//从controller中获取service
+        System.out.println(service.a);
+        MyService bean1 = context.getBean(MyService.class);//直接从容器中去拿
+        System.out.println(bean1.a);
+
     }
 }

@@ -81,4 +81,33 @@ public class JamesImportBeanDefinitionRegistrar implements ImportBeanDefinitionR
 
 其实对于`@Autowired`注解, 实际上是`AutowiredAnnotationBeanPostProcessor`类所完成的操作.  
 Autowired----->AutowiredAnnotationBeanPostProcessor  注册到IOC容器  
-bean----->控制我们的bean
+bean----->控制我们的bean  
+
+## 第四节课 beanPostProcessor及其组件的使用
+`@Autowired` `@Service` `@Inject` `@Qualifier` `@Resource`  
+1. `@Value("${name}")` : 给bean属性进行赋值, 从.properties文件中取值  
+### @Autowired @Qualifier @Primary自动装配
+什么是自动装配?  
+    Spring利用依赖注入, 完成对容器中哥哥组件依赖关系的赋值.  
+思考与操作?  
+ - bean组件加载优先级?  
+ - 如果容器中存在两个id相同的bean, 会加载那个bean呢?  
+ - 容器加载不存在的bean会出现什么问题?  
+ - @Primary注解bean首选如何使用? 
+ - @Autowired和@Resource和@Inject区别? 
+
+将同一个bean注入以相同的名字注入两次, configuration中的注入不起作用的. 默认使用@Autowired注入的bean  
+![](./imgs/3.png)![](./imgs/4.png)  
+如果同一个bean使用不同的名字注入两次, 会报异常:
+```
+No qualifying bean of type 'org.springsource.course1.cap11.MyService' available: expected single matching bean but found 2: myService,myService--
+org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'org.springsource.course1.cap11.MyService' available: 
+expected single matching bean but found 2: myService,myService--
+```
+Bean Id不能相同.  @Qualifier("beanId")指定到容器中找id为beanId的注入的bean  
+@Primary注解标注作为首选bean注入  
+
+同样@Resource也可以把指定beanId注入. 即:`@Resource("beanId")` = `@Autowired + @Qualifier("beanId")`  
+`@Resource()`不支持`@Primiary`  
+`@Inject`方式注入bean是JSR250规范, 需要引入javax.inject version=1依赖包, @Inject功能和@Autowired差不多.
+支持@Primiary, 但是没有@Autowired中required=false功能. @Inject不依赖spring.
