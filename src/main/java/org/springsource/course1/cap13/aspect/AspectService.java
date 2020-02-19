@@ -43,7 +43,10 @@ public class AspectService {
 
     @Around("pointCut1()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-        return joinPoint.proceed();
+        log.info("Before Around");
+        Object o = joinPoint.proceed();
+        log.info("After Around");
+        return o;
     }
 
 }

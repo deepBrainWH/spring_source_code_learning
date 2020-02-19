@@ -138,4 +138,5 @@ IOC{
 返回通知: logReturn()  
 异常通知: logException()  
 环绕通知: 动态代理, 最底层通知, 手动指定执行目标方法(@Around)  
+> 注意: Around通知在@Before通知之前.  
 
