@@ -15,6 +15,12 @@ import org.springsource.course1.cap10.config.Cap10Configuration;
 import org.springsource.course1.cap11.Cap11MainConfigure;
 import org.springsource.course1.cap11.MyController;
 import org.springsource.course1.cap11.MyService;
+import org.springsource.course1.cap12.Cap12Configuration;
+import org.springsource.course1.cap12.Light;
+import org.springsource.course1.cap12.Moon;
+import org.springsource.course1.cap12.Sun;
+import org.springsource.course1.cap13.Cap13Configuration;
+import org.springsource.course1.cap13.service.CalculateService;
 import org.springsource.course1.cap2.config.MainConfig2;
 import org.springsource.course1.cap4.MainConfig;
 import org.springsource.course1.cap5.Cap5MainConfig;
@@ -178,8 +184,41 @@ public class MainTest3 {
         MyController bean = context.getBean(MyController.class);
         MyService service = bean.getService();//从controller中获取service
         System.out.println(service.a);
-        MyService bean1 = context.getBean(MyService.class);//直接从容器中去拿
+        MyService bean1 = context.getBean("myService", MyService.class);//直接从容器中去拿
         System.out.println(bean1.a);
+    }
 
+    /**
+     * 测试@Autowired在方法上
+     */
+    @Test
+    public void testCap12(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap12Configuration.class);
+        Sun bean = context.getBean(Sun.class);
+        System.out.println(bean);
+        Moon bean1 = context.getBean(Moon.class);
+        System.out.println(bean1);
+        context.close();
+    }
+
+    /**
+     * 测试Aware
+     */
+    @Test
+    public void testCap12Resolve(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap12Configuration.class);
+        Light light = context.getBean("light", Light.class);
+        context.close();
+    }
+
+    /**
+     * test AOP
+     */
+    @Test
+    public void testCap13(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Cap13Configuration.class);
+        CalculateService bean = context.getBean(CalculateService.class);
+        bean.div(14, 7);
+        context.close();
     }
 }

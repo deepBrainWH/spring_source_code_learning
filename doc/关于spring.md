@@ -105,9 +105,37 @@ org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying
 expected single matching bean but found 2: myService,myService--
 ```
 Bean Id不能相同.  @Qualifier("beanId")指定到容器中找id为beanId的注入的bean  
-@Primary注解标注作为首选bean注入  
+@Primary注解标注作为首选bean注入. 一般在Config配置类中和@Bean联合使用.   
 
 同样@Resource也可以把指定beanId注入. 即:`@Resource("beanId")` = `@Autowired + @Qualifier("beanId")`  
-`@Resource()`不支持`@Primiary`  
+`@Resource()`不支持`@Primiary`, @Resource是JDK中的规范, 不是spring中的东西.  
 `@Inject`方式注入bean是JSR250规范, 需要引入javax.inject version=1依赖包, @Inject功能和@Autowired差不多.
-支持@Primiary, 但是没有@Autowired中required=false功能. @Inject不依赖spring.
+支持@Primiary, 但是没有@Autowired中required=false功能. @Inject不依赖spring.  
+## 第五节课: SpringAOP
+spring 启动过程:  
+容器启动加载配置类-->refresh()-->finishBeanFactoryInitialization()-->getBean()-->
+doCreateBean()-->beanWrapper(对象创建)-->populated(属性赋值)-->initialize()-->processors  
+IOC: 核心就是完成bean初始化丢到容器中(把bean放到大Map集合中)  
+### 关于Aware接口
+1. ApplicationContextAware接口: 获取到spring上下文环境(context)
+2. BeanNameAware接口: 获取到beanName
+3. EmbeddedValueResolverAware接口: 属性赋值, 等价于`@Value()`, `@Value`参数: ${} 取环境变量值，　#{} springel表达式求值.
+
+手写IOC容器步骤:  
+IOC{  
+//加载properties  
+//声明MAP集合  
+//JamesComponentScan() A B C三个类 controller service dao FILE[] file  
+//利用反射机制 class.forName()将这些类加载尽力啊, 得到实例  
+//将实例put到Map集合中.   
+}  
+总结: 把Spring底层的组件可以通过实现Aware相关接口注入到自定义bean中, ApplicationContextAware是利用ApplicationContextAwareProcessor
+来处理的, 其他XXXAware也类似, 都有相关的Processor来处理, XXXAware-->功能使用了XXXProcessor来处理的;  
+比如: ApplicationContextAware-->ApplicationContextProcessor后置处理器来处理的.  
+### Spring AOP
+前置通知: logStart(), 在目标方法(div)运行之前运行(@Before)  
+后置通知: logEnd()  
+返回通知: logReturn()  
+异常通知: logException()  
+环绕通知: 动态代理, 最底层通知, 手动指定执行目标方法(@Around)  
+

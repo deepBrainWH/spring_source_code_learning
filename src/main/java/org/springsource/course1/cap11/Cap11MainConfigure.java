@@ -16,7 +16,7 @@ public class Cap11MainConfigure {
     /**
      * 测试多次注入同一个bean
      */
-//    @Primary
+    @Primary
     @Bean("myService2")
     public MyService myService(){
         MyService myService = new MyService();

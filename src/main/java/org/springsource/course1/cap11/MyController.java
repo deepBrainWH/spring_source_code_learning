@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MyController {
 
-    @Qualifier("myService2")
     @Autowired
     private MyService myService;
 
